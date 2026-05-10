@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Janala</title>
+    <link rel="shortcut icon" href="/public/assets/files/logo.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/public/assets/css/font.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+
+</head>
+<body class="">
+    <section class="navAreaSection  w-full min-h-[96px] bg-[#badeff42] flex justify-center items-center shadow-[0_8px_6px_-6px_rgba(0,0,0,0.3)]">
+        <div class="navArea  w-11/12 max-w-[90vw] h-full flex flex-row justify-between">
+            <div class="navLogoWrapper flex justify-between items-center cursor-pointer">
+                <p class="logo text-[23px] font-semibold ">Engish</p>
+                <img class="logo w-[3rem] h-auto px-[2px]" src="/public/assets/files/logo.png">
+                <p class="logo text-[22px] font-normal"> জানালা</p>
+            </div>
+
+            <div class="navBtnAreaWrapper flex gap-[10px]">
+                <button class="btn border border-[#422AD5] text-[#422AD5] bg-transparent hover:bg-[#422AD5] hover:text-white"><i class="fa-solid fa-circle-question"></i> FAQ</button>
+                <button class="btn border border-[#422AD5] text-[#422AD5] bg-transparent hover:bg-[#422AD5] hover:text-white"><i class="fa-solid fa-book-open"></i> Learn</button>
+                <button class="btn border border-[#422AD5] text-[#422AD5] bg-transparent hover:bg-[#422AD5] hover:text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="heroBannerAreaSection  w-full min-h-[96px] my-[10vh] flex flex-wrap justify-center items-center">
+        <div class="heroBanner  w-11/12 flex flex-row items-center justify-around">
+            <div class="bannerInfo w-5/10 ml-[-3vw] ">
+                <h1 class="text-4xl font-bold">
+                    <span class="text-[#00BCFF]">English</span> is easy!!
+                </h1>
+                <p class="text-lg font_bangla mt-[1rem]">
+                    আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
+                </p>
+                <div class="bannerForm flex flex-col gap-3 mt-[3rem]">
+                    <input type="text" placeholder="Enter your name" class="input" />
+                    <input type="password" placeholder="Enter password" class="input" />
+                    <button class="btn border border-[#422AD5] bg-[#422AD5] text-white w-max mt-2">Get Started</button>
+                </div>
+            </div>
+
+            <div class="bannerAnimation">
+                <img src="/public/assets/files/hero-student.png" alt="" class="w-[30rem]">
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="cardNavSection  w-full min-h-[96px] mt-[18vh] flex justify-center items-center">
+        <div class="cardNavAreaWrapper  w-11/12 max-w-[90vw] h-full flex flex-col justify-between gap-[2rem]">
+            <div class="navLogoWrapper">
+                <p class="logo text-[28px] font-semibold text-center">
+                    <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+                </p>
+            </div>
+
+            <div id="cardNavBtnAreaWrapper" class="cardNavBtnAreaWrapper flex flex-wrap gap-[1rem] items-center justify-center">
+                <!-- lessons will added here -->
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cardViewSection  w-full min-h-[96px] my-[7vh] flex justify-center items-center">
+        <div id="cardViewAreaWrapper" class="cardViewAreaWrapper  w-11/12 max-w-[95vw] md:max-w-[90vw] xl:max-w-[80vw] min-h-[5rem] flex flex-wrap flex-row justify-center bg-[#F8F8F8] p-[1rem] rounded-[1rem] border-gray-100 border-1">
+
+            <div class="emptyCard  m-[3rem] mx-auto">
+                <p class="logo text-[1rem] text-gray-400 text-center font_bangla">
+                    আপনি এখনো কোন Lesson Select করেন নি
+                </p>
+                <p class="logo text-[2rem] font-semibold text-center font_bangla mt-2">
+                    একটি Lesson Select করুন।
+                </p>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/public/assets/js/script.js"></script>
+    <script src="/public/assets/js/loadLessons.js"></script>
+
+</body>
+</html>
