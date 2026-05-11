@@ -1,10 +1,12 @@
 const loadLesson = async () => {
+    displayLoadingScreen(document.getElementById("cardNavBtnAreaWrapper"), "auto", "0", "bars", "sm", "1.25", "#1800b4a2");
     const res = await fetch('https://openapi.programming-hero.com/api/levels/all');
     const json = await res.json();
     displayLesson(json.data);
 };
 
 const loadLevelWord = async (levelNo) => {
+    displayLoadingScreen(document.getElementById("cardViewAreaWrapper"), "auto", "10vh", "ring", "xl", "2.5", "#1800b4");
     const url = `https://openapi.programming-hero.com/api/level/${levelNo}`;
     const res = await fetch(url);
     const json = await res.json();
@@ -13,26 +15,30 @@ const loadLevelWord = async (levelNo) => {
 
 
 const loadWordInfo = async (levelNo) => {
+    // const htmlBody = document.getElementById("htmlBody");
+    // const preserveHtmlBodyElement = htmlBody.innerHTML;
+    // displayLoadingScreen(htmlBody, "auto", "10vh", "ball", "xl", "5", "#1800b4");
     const url = `https://openapi.programming-hero.com/api/word/${levelNo}`;
     const res = await fetch(url);
     const json = await res.json();
+    // htmlBody.innerHTML = preserveHtmlBodyElement;
     displayWordInfo(json.data);
 }
 
 
-const cardDisplayAreaLoading = (loadingState) => {
-    if (loadingState == true){
-        document.getElementById("cardAreaLoadingSpinner").classList.remove("hidden");
-        document.getElementById("cardAreaLoadingSpinner").classList.add("flex");
-    } else{
-        document.getElementById("cardAreaLoadingSpinner").classList.remove("flex");
-        document.getElementById("cardAreaLoadingSpinner").classList.add("hidden");
-    }
+
+
+const displayLoadingScreen = (parentDiv, mx, my, loaderType, itemSize, itemScale, itemColor) => {
+    const loadingHTML = `
+            <div id="cardAreaLoadingSpinner" class="cardAreaLoadingSpinner flex w-full h-full justify-center items-center mx-[${mx}] my-[${my}] ">
+                <span class="loading loading-${loaderType} loading-[${itemSize}] scale-[${itemScale}] text-[${itemColor}] transition-[1s]"></span>
+            </div>
+        `;
+    parentDiv.innerHTML = loadingHTML;
 }
 
 
 const displayWordInfo = (wordBucket) => {
-    cardDisplayAreaLoading(true);
     const createModal = document.createElement("div");
     const createSynonymBtn = (arrOfSynonyms) => {
         if(wordBucket.synonyms.length === 0){
@@ -58,7 +64,7 @@ const displayWordInfo = (wordBucket) => {
                         </div>
                     </div>
                     <form method="dialog">
-                        <button class="btn btn-sm btn-primary ml-10 mt-0 mb-4">Complete Learning <i class="fa-solid fa-arrow-right-long"></i></button>
+                        <button class="btn btn-sm btn-primary ml-10 mt-0 mb-4">Completed Learning <i class="fa-solid fa-arrow-right-long"></i></button>
                     </form>
                 </div>
 
@@ -66,7 +72,7 @@ const displayWordInfo = (wordBucket) => {
     `;
     document.body.append(createModal);
     document.getElementById(`modal_${wordBucket.id}`).showModal();
-    cardDisplayAreaLoading(false);
+
 }
 
 
@@ -85,14 +91,15 @@ const displayLesson = (lessons) => {
 
 
 const displayLevelWord = (ID,lessons) => {
-    cardDisplayAreaLoading(true);
-    const lessonIDClicked = document.getElementById(`lsnBtn_${ID}`);
-    lessonIDClicked.classList.add("active_lessonBtn");
-    document.querySelectorAll('.lsnBtn').forEach(btn => {
-        if(btn.id !== `lsnBtn_${ID}`){
-            btn.classList.remove("active_lessonBtn");
-        }
-    });
+
+        const lessonIDClicked = document.getElementById(`lsnBtn_${ID}`);
+        lessonIDClicked.classList.add("active_lessonBtn");
+        document.querySelectorAll('.lsnBtn').forEach(btn => {
+            if(btn.id !== `lsnBtn_${ID}`){
+                btn.classList.remove("active_lessonBtn");
+            }
+        });
+
     const cardViewAreaWrapper = document.getElementById("cardViewAreaWrapper");
     cardViewAreaWrapper.innerHTML = "";
 
@@ -132,7 +139,7 @@ const displayLevelWord = (ID,lessons) => {
         `;
         cardViewAreaWrapper.append(cardDiv);
     }
-    cardDisplayAreaLoading(false);
+
 
 };
 
