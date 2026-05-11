@@ -26,6 +26,13 @@ const loadWordInfo = async (levelNo) => {
 }
 
 
+function pronounceWord(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-US"; // English
+    window.speechSynthesis.speak(utterance);
+}
+
+
 
 
 const displayLoadingScreen = (parentDiv, mx, my, loaderType, itemSize, itemScale, itemColor) => {
@@ -92,13 +99,13 @@ const displayLesson = (lessons) => {
 
 const displayLevelWord = (ID,lessons) => {
 
-        const lessonIDClicked = document.getElementById(`lsnBtn_${ID}`);
-        lessonIDClicked.classList.add("active_lessonBtn");
-        document.querySelectorAll('.lsnBtn').forEach(btn => {
-            if(btn.id !== `lsnBtn_${ID}`){
-                btn.classList.remove("active_lessonBtn");
-            }
-        });
+    const lessonIDClicked = document.getElementById(`lsnBtn_${ID}`);
+    lessonIDClicked.classList.add("active_lessonBtn");
+    document.querySelectorAll('.lsnBtn').forEach(btn => {
+        if(btn.id !== `lsnBtn_${ID}`){
+            btn.classList.remove("active_lessonBtn");
+        }
+    });
 
     const cardViewAreaWrapper = document.getElementById("cardViewAreaWrapper");
     cardViewAreaWrapper.innerHTML = "";
@@ -133,7 +140,7 @@ const displayLevelWord = (ID,lessons) => {
                                 </p>
                                 <div class="btnHolder mt-[2rem] w-11/12 flex flex-row justify-between mx-auto">
                                     <button onclick="loadWordInfo(${lesson.id})" class="px-[.5rem] py-[.45rem] rounded-lg text-[#374957] bg-[#1a91ff1a] cursor-pointer"><i class="fa-solid fa-circle-info"></i></button>
-                                    <button onclick="loadWordInfo(${lesson.id})" class="px-[.5rem] py-[.45rem] rounded-lg text-[#374957] bg-[#1a91ff1a] cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
+                                    <button onclick="pronounceWord('${lesson.word}')" class="px-[.5rem] py-[.45rem] rounded-lg text-[#374957] bg-[#1a91ff1a] cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
                                 </div>
                             </div>
         `;
