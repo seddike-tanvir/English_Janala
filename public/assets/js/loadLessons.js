@@ -45,42 +45,42 @@ const displayLoadingScreen = (parentDiv, mx, my, loaderType, itemSize, itemScale
 }
 
 
-// const displayWordInfo = (wordBucket) => {
-//     const createModal = document.createElement("div");
-//     const createSynonymBtn = (arrOfSynonyms) => {
-//         if(wordBucket.synonyms.length === 0){
-//             return `<p class="text-red-200 font_bangla font-extralight">সমার্থক শব্দ পাওয়া যায়নি</p>`;
-//         }
-//         const eachSynonym = arrOfSynonyms.map(synonym => {
-//             return `<button class="btn btn-sm btn-outline border-[#D7E4EF] bg-[#EDF7FF] font-normal">${synonym}</button>`
-//         });
-//         return eachSynonym.join('');
-//     };
-//     createModal.innerHTML = `
-//             <dialog id="modal_${wordBucket.id}" class="model border-[1px] border-gray-200 w-[95vw] md:max-w-[30rem] border-gray-100] bg-white rounded-xl m-auto items-center shadow-xl">
-//                 <div class="model-box text-black m-0 p-0">
-//                     <div class="wordInfoBox border-[1px] border-[#D7E4EF] rounded-lg p-[1rem] m-[1rem]">
-//                         <h2 class="word text-[1.4rem] font-semibold ">${wordBucket.word} (<i class="fa-solid fa-microphone-lines"></i>: <span class="font_bangla">${wordBucket.pronunciation}</span>)</h2>
-//                         <h3 class="wordMeaning text-[1.05rem] font-semibold my-2 mt-6">Meaning</h3>
-//                         <p class="wordMeaning text-[1.05rem] font-normal mb-6">${wordBucket.meaning}</p>
-//                         <h3 class="wordExample text-[1.05rem] font-semibold my-2">Example</h3>
-//                         <p class="wordExample text-[1.05rem] font-normal mb-6">${wordBucket.sentence}</p>
-//                         <p class="wordExample text-[1.05rem] font-semibold my-2 font_bangla">সমার্থক শব্দ গুলো</p>
-//                         <div class="synonymWrapper space-x-2">
-//                             ${createSynonymBtn(wordBucket.synonyms)}
-//                         </div>
-//                     </div>
-//                     <form method="dialog">
-//                         <button class="btn btn-sm btn-primary ml-10 mt-0 mb-4">Completed Learning <i class="fa-solid fa-arrow-right-long"></i></button>
-//                     </form>
-//                 </div>
+const displayWordInfo = (wordBucket) => {
+    const createModal = document.createElement("div");
+    const createSynonymBtn = (arrOfSynonyms) => {
+        if(wordBucket.synonyms.length === 0){
+            return `<p class="text-red-200 font_bangla font-extralight">সমার্থক শব্দ পাওয়া যায়নি</p>`;
+        }
+        const eachSynonym = arrOfSynonyms.map(synonym => {
+            return `<button class="btn btn-sm btn-outline border-[#D7E4EF] bg-[#EDF7FF] font-normal">${synonym}</button>`
+        });
+        return eachSynonym.join('');
+    };
+    createModal.innerHTML = `
+            <dialog id="modal_${wordBucket.id}" class="model border-[1px] border-gray-200 w-[95vw] md:max-w-[30rem] border-gray-100] bg-white rounded-xl m-auto items-center shadow-xl">
+                <div class="model-box text-black m-0 p-0">
+                    <div class="wordInfoBox border-[1px] border-[#D7E4EF] rounded-lg p-[1rem] m-[1rem]">
+                        <h2 class="word text-[1.4rem] font-semibold ">${wordBucket.word} (<i class="fa-solid fa-microphone-lines"></i>: <span class="font_bangla">${wordBucket.pronunciation}</span>)</h2>
+                        <h3 class="wordMeaning text-[1.05rem] font-semibold my-2 mt-6">Meaning</h3>
+                        <p class="wordMeaning text-[1.05rem] font-normal mb-6">${wordBucket.meaning}</p>
+                        <h3 class="wordExample text-[1.05rem] font-semibold my-2">Example</h3>
+                        <p class="wordExample text-[1.05rem] font-normal mb-6">${wordBucket.sentence}</p>
+                        <p class="wordExample text-[1.05rem] font-semibold my-2 font_bangla">সমার্থক শব্দ গুলো</p>
+                        <div class="synonymWrapper space-x-2">
+                            ${createSynonymBtn(wordBucket.synonyms)}
+                        </div>
+                    </div>
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-primary ml-10 mt-0 mb-4">Completed Learning <i class="fa-solid fa-arrow-right-long"></i></button>
+                    </form>
+                </div>
 
-//             </dialog>
-//     `;
-//     document.body.append(createModal);
-//     document.getElementById(`modal_${wordBucket.id}`).showModal();
+            </dialog>
+    `;
+    document.body.append(createModal);
+    document.getElementById(`modal_${wordBucket.id}`).showModal();
 
-// }
+}
 
 
 const displayLesson = (lessons) => {
@@ -175,7 +175,12 @@ searchBtn.addEventListener("click", async () => {
     .then(data => {
         const allWords = data.data;
         console.log(allWords);
-        const filteredWords = allWords.filter(word => word.word.toLowerCase().includes(searchQuery));
+        let filteredWords = allWords.filter(word => word.word.toLowerCase().includes(searchQuery));
+        filteredWords = filteredWords.filter((word, index, arr) => index === arr.findIndex(
+                item => item.word.toLowerCase() === word.word.toLowerCase()
+            )
+        );
+
         console.log(filteredWords);
         if(filteredWords.length === 0){
             const cardViewAreaWrapper = document.getElementById("cardViewAreaWrapper");
