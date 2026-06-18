@@ -1,0 +1,13 @@
+*{
+    font-family:  "Poppins", sans-serif;
+    /* overflow-x: hidden; */
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.active_lessonBtn{
+    background-color: #422AD5;
+    color: white;
+}

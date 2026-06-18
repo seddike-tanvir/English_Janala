@@ -1,0 +1,49 @@
+git add -A
+git commit -m "Commited by SM"
+git branch -M main
+git push -u origin main
+surge
+
+
+
+
+
+
+
+
+
+
+git add -A
+git commit -m "Commited by SM"
+git branch -M main
+git push -u origin main
+firebase deploy
+logout
+
+
+
+
+
+
+
+
+npm run predeploy
+git add -A
+git commit -m "Commited by SM"
+git branch -M main
+git push -u origin main
+firebase deploy
+logout
+
+
+
+
+
+git config --global user.name "sm"
+git config --global user.email "contact.smtanvir@gmail.com"
+git init
+git add -A
+git commit -m "Commited by SM"
+git branch -M main
+git remote add origin https://github.com/seddike-tanvir/English_Janala.git
+git push -u origin main --force
